@@ -15,7 +15,7 @@ services:
    wordpress:
      image: wordpress:latest
      volumes:
-       - ${UNIQUE_VOLUME_NAME}:/var/www/html
+       - wp_root:/var/www/html
      ports:
        - 80
      restart: always
@@ -26,4 +26,3 @@ services:
 
 volumes:
     db_data:
-    ${UNIQUE_VOLUME_NAME}:
