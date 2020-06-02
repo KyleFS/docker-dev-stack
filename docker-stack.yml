@@ -6,6 +6,7 @@ services:
      volumes:
        - wp_data:/mnt/wp_data
      ports:
+       - 139
        - 445
      restart: always
 
