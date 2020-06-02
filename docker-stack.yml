@@ -29,7 +29,8 @@ services:
      volumes:
        - wp_data:/mnt/wp_data
      ports:
-       - 80
+       - 139
+       - 445
      restart: always
      environment:
        SHARE: ${SMB_SHARE_NAME};/mnt/wp_data;yes;no;yes
