@@ -9,6 +9,8 @@ services:
        - 139
        - 445
      restart: always
+     environment:
+       SHARE: ${SMB_SHARE_NAME};/mnt/wp_data;yes;no;yes
 
    db:
      image: mysql:5.7
