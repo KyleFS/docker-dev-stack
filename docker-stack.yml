@@ -23,6 +23,17 @@ services:
        WORDPRESS_DB_HOST: db:3306
        WORDPRESS_DB_USER: wordpress
        WORDPRESS_DB_PASSWORD: wordpress
+       
+    smb:
+     image: dperson/samba
+     volumes:
+       - wp_data:/mnt/wp_data
+     ports:
+       - 80
+     restart: always
+     environment:
+       SHARE: ${SMB_SHARE_NAME};/mnt/wp_data;yes;no;yes
+       RECYCLE: true
 
 volumes:
     db_data:
