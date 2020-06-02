@@ -1,19 +1,6 @@
 version: '3'
 
 services:
-   smb:
-     image: dperson/samba:latest
-     volumes:
-       - wp_data:/mnt/wp_data
-     ports:
-       - "137:137/udp"
-       - "138:138/udp"
-       - "139:139/tcp"
-       - "445:445/tcp"
-     restart: always
-     environment:
-       SHARE: ${SMB_SHARE_NAME};/mnt/wp_data;yes;no;yes
-
    db:
      image: mysql:5.7
      volumes:
@@ -31,6 +18,7 @@ services:
        - wp_data:/var/www/html
      ports:
        - 80
+       - 443
      restart: always
      environment:
        WORDPRESS_DB_HOST: db:3306
