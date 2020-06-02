@@ -26,12 +26,6 @@ services:
        
     smb:
      image: dperson/samba:latest
-     volumes:
-       - wp_data:/mnt/wp_data
-     ports:
-       - 139
-       - 445
-     restart: always
 
 volumes:
     db_data:
