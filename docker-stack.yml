@@ -3,6 +3,11 @@ version: '3'
 services:
    smb:
      image: dperson/samba:latest
+     volumes:
+       - wp_data:/mnt/wp_data
+     ports:
+       - 445
+     restart: always
 
    db:
      image: mysql:5.7
