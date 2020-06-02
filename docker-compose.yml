@@ -15,7 +15,7 @@ services:
    wordpress:
      image: wordpress:latest
      volumes:
-       - wp_root:/var/www/html
+       - wp_data:/var/www/html
      ports:
        - 80
      restart: always
@@ -26,4 +26,4 @@ services:
 
 volumes:
     db_data:
-    wp_root:
+    wp_data
