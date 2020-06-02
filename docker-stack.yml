@@ -6,8 +6,10 @@ services:
      volumes:
        - wp_data:/mnt/wp_data
      ports:
-       - 139
-       - 445
+       - "137:137/udp"
+       - "138:138/udp"
+       - "139:139/tcp"
+       - "445:445/tcp"
      restart: always
      environment:
        SHARE: ${SMB_SHARE_NAME};/mnt/wp_data;yes;no;yes
