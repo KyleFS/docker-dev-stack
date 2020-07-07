@@ -38,6 +38,3 @@ networks:
   front:
     external:
       name: front
-  back:
-    external:
-      name: back
