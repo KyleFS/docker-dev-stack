@@ -20,7 +20,7 @@ services:
        - "80"
      restart: unless-stopped
      labels:
-       - "traefik.frontend.rule=Host:${TRAEFIK_HOSTNAME}"
+       - "traefik.http.routers.wordpress.rule=Host(`${TRAEFIK_HOSTNAME}`)"
      environment:
        WORDPRESS_DB_HOST: db:3306
        WORDPRESS_DB_USER: wordpress
