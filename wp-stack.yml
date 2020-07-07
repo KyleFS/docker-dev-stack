@@ -11,6 +11,8 @@ services:
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
+    networks:
+      - back
 
   wordpress:
     image: wordpress:latest
@@ -23,7 +25,18 @@ services:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
+    networks:
+      - front
+      - back
 
 volumes:
   db_data:
   wp_data:
+
+networks:
+  front:
+    external: true
+    name: front
+  back:
+    external: true
+    name: back
