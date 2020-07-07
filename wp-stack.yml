@@ -8,7 +8,6 @@ services:
     restart: unless-stopped
     networks:
       - web
-      - default
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
       MYSQL_DATABASE: wordpress
@@ -24,7 +23,6 @@ services:
       - "traefik.http.routers.wordpress.rule=Host(`${TRAEFIK_HOSTNAME}`)"
     networks:
       - web
-      - default
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
