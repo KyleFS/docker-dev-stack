@@ -21,3 +21,5 @@ services:
 
 networks:
   front:
+    external: true
+    name: front
