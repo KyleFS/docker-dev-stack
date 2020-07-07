@@ -22,7 +22,8 @@ services:
     ports:
       - "80"
     labels:
-      - "traefik.http.routers.${TRAEFIK_UID}.rule=Host(`${TRAEFIK_HOSTNAME}`)"
+      - "traefik.http.routers.wordpress.rule=Host(`${TRAEFIK_HOSTNAME}`)"
+      - "traefik.http.services.wordpress.loadbalancer.server.port=80"
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
