@@ -5,7 +5,7 @@ services:
      image: mysql:5.7
      volumes:
        - db_data:/var/lib/mysql
-     restart: always
+     restart: unless-stopped
      environment:
        MYSQL_ROOT_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
        MYSQL_DATABASE: wordpress
@@ -18,7 +18,9 @@ services:
        - wp_data:/var/www/html
      ports:
        - "80"
-     restart: always
+     restart: unless-stopped
+     labels:
+       - "traefik.http.routers.whoami.rule=Host(`${TRAEFIK_HOSTNAME}`)"
      environment:
        WORDPRESS_DB_HOST: db:3306
        WORDPRESS_DB_USER: wordpress
