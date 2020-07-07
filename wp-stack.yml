@@ -35,8 +35,8 @@ volumes:
 
 networks:
   front:
-    external: true
-    name: front
+    external:
+      name: front
   back:
-    external: true
-    name: back
+    external:
+      name: back
