@@ -17,8 +17,8 @@ services:
       # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
-      - web
+      - backend
 
 networks:
-  web:
+  backend:
     external: true
