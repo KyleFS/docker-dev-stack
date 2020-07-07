@@ -1,4 +1,4 @@
-version: '3'
+version: '3.3'
 
 services:
   db:
@@ -22,9 +22,9 @@ services:
     restart: unless-stopped
     labels:
       - "traefik.http.routers.wordpress.rule=Host(`${TRAEFIK_HOSTNAME}`)"
-      networks:
-        - web
-        - default
+    networks:
+      - web
+      - default
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
