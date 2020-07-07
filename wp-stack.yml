@@ -7,7 +7,8 @@ services:
       - db_data:/var/lib/mysql
     restart: unless-stopped
     networks:
-      - backend
+      - web
+      - default
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
       MYSQL_DATABASE: wordpress
@@ -22,8 +23,8 @@ services:
     labels:
       - "traefik.http.routers.wordpress.rule=Host(`${TRAEFIK_HOSTNAME}`)"
     networks:
-      - frontend
-      - backend
+      - web
+      - default
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
@@ -34,7 +35,5 @@ volumes:
   wp_data:
 
 networks:
-  frontend:
-    external: true
-  backend:
+  web:
     external: true
