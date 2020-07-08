@@ -23,9 +23,11 @@ services:
       - "80"
     labels:
       - "traefik.http.routers.${TRAEFIK_UID}.rule=Host(`${TRAEFIK_HOSTNAME}`)"
-      - "traefik.http.services.${TRAEFIK_UID}.loadbalancer.server.port=80"
       - "traefik.http.routers.${TRAEFIK_UID}.tls.certresolver=lehttpresolver"
       - "traefik.http.routers.${TRAEFIK_UID}.entrypoints=websecure"
+      - "traefik.http.services.${TRAEFIK_UID}.loadbalancer.server.port=80"
+      - "traefik.http.middlewares.test-redirectscheme.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.test-redirectscheme.redirectscheme.permanent=true"
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
