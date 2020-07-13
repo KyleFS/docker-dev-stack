@@ -18,7 +18,6 @@ services:
     image: wordpress:latest
     volumes:
       - wp_data:/var/www/html
-      - phpini_data:/usr/local/etc/php/conf.d/user
     restart: unless-stopped
     ports:
       - "80"
@@ -38,9 +37,6 @@ services:
 volumes:
   db_data:
   wp_data:
-  phpini_data:
-    external:
-      name: phpini_data
 
 networks:
   front:
