@@ -17,7 +17,8 @@ services:
   wordpress:
     image: wordpress:latest
     volumes:
-      - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+      - "/data/compose/PHP_INI/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini"
+      - "wp_data:/var/www/html"
     restart: unless-stopped
     depends_on:
       - db
