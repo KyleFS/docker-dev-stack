@@ -7,7 +7,7 @@ services:
     command:
       - "--providers.docker"
       - "--providers.docker.swarmMode=true"
-      - "--providers.docker.network=front"
+      - "--providers.docker.exposedbydefault=false"
       - "--api.insecure"
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
