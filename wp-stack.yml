@@ -6,6 +6,8 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     restart: unless-stopped
+    labels:
+      - "traefik.enable=false"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
       MYSQL_DATABASE: wordpress
@@ -25,7 +27,6 @@ services:
     ports:
       - "80"
     labels:
-      - "traefik.enable=true"
       - "traefik.docker.network=front"
       - "traefik.http.routers.${TRAEFIK_UID}.rule=Host(`${TRAEFIK_HOSTNAME}`)"
       - "traefik.http.routers.${TRAEFIK_UID}.tls.certresolver=lehttpresolver"
