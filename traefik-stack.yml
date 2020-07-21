@@ -6,6 +6,7 @@ services:
     image: traefik:v2.2
     command:
       - "--providers.docker"
+      - "--providers.docker.swarmMode=true"
       - "--api.insecure"
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
