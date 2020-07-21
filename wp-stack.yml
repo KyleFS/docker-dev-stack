@@ -26,6 +26,7 @@ services:
       - "80"
     labels:
       - "traefik.enable=true"
+      - "traefik.docker.network=front"
       - "traefik.http.routers.${TRAEFIK_UID}.rule=Host(`${TRAEFIK_HOSTNAME}`)"
       - "traefik.http.routers.${TRAEFIK_UID}.tls.certresolver=lehttpresolver"
       - "traefik.http.routers.${TRAEFIK_UID}.entrypoints=websecure"
