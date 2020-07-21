@@ -24,12 +24,11 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "le_data:/letsencrypt"
     networks:
-      - front
+      - proxy
 
 volumes:
   le_data:
 
 networks:
-  front:
-    external:
-      name: front
+  proxy:
+    external: true
