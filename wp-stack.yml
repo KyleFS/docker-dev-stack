@@ -15,7 +15,7 @@ services:
       - backend
 
   wordpress:
-    image: wordpress:latest
+    image: kylefs/dev-wp:latest
     volumes:
       - "/var/lib/docker/volumes/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini"
       - "wp_data:/var/www/html"
