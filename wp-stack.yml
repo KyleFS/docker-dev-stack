@@ -36,6 +36,8 @@ services:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_CONFIG_EXTRA: |
+        define( 'BACKUPBUDDY_API_ENABLE', true );
     networks:
       - proxy
       - backend
