@@ -4,7 +4,7 @@ services:
   db:
     image: mysql:5.7
     volumes:
-      - db_data:/var/lib/mysql
+      - db_data:/var/lib/mysqlRe
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
@@ -27,16 +27,16 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.${TRAEFIK_UID}.entrypoints=web"
-        - "traefik.http.routers.${TRAEFIK_UID}.rule=Host(`${TRAEFIK_HOSTNAME}`)"
-        - "traefik.http.routers.${TRAEFIK_UID}-secure.rule=Host(`${TRAEFIK_HOSTNAME}`)"
-        - "traefik.http.routers.${TRAEFIK_UID}-secure.tls.certresolver=lehttpresolver"
-        - "traefik.http.routers.${TRAEFIK_UID}-secure.entrypoints=websecure"
-        - "traefik.http.services.${TRAEFIK_UID}.loadbalancer.server.port=80"
-        - "traefik.tcp.routers.${TRAEFIK_UID}-xdebug.rule=Host(`${TRAEFIK_HOSTNAME}`)"
-        - "traefik.tcp.routers.${TRAEFIK_UID}-xdebug.entrypoints=xdebug"
-        - "traefik.tcp.routers.${TRAEFIK_UID}-xdebug.service=${TRAEFIK_UID}-xdebug-svc"
-        - "traefik.tcp.services.${TRAEFIK_UID}-xdebug-svc.loadbalancer.server.port=9000"
+        - "traefik.http.routers.${DEV_UID}.entrypoints=web"
+        - "traefik.http.routers.${DEV_UID}.rule=Host(`${DEV_WAN_HOSTNAME}`)"
+        - "traefik.http.routers.${DEV_UID}-secure.rule=Host(`${DEV_WAN_HOSTNAME}`)"
+        - "traefik.http.routers.${DEV_UID}-secure.tls.certresolver=lehttpresolver"
+        - "traefik.http.routers.${DEV_UID}-secure.entrypoints=websecure"
+        - "traefik.http.services.${DEV_UID}.loadbalancer.server.port=80"
+        - "traefik.tcp.routers.${DEV_UID}-xdebug.rule=Host(`${DEV_LAN_HOSTNAME}`)"
+        - "traefik.tcp.routers.${DEV_UID}-xdebug.entrypoints=xdebug"
+        - "traefik.tcp.routers.${DEV_UID}-xdebug.service=${DEV_UID}-xdebug-svc"
+        - "traefik.tcp.services.${DEV_UID}-xdebug-svc.loadbalancer.server.port=9000"
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
