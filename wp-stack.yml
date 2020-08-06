@@ -37,6 +37,9 @@ services:
         - "traefik.tcp.routers.${DEV_UID}-xdebug.entrypoints=xdebug"
         - "traefik.tcp.routers.${DEV_UID}-xdebug.service=${DEV_UID}-xdebug-svc"
         - "traefik.tcp.services.${DEV_UID}-xdebug-svc.loadbalancer.server.port=9000"
+        - "traefik.http.middlewares.auto-https.redirectscheme.scheme=https"
+        - "traefik.http.middlewares.auto-https.redirectscheme.permanent=true"
+        - "traefik.http.routers.${DEV_UID}.middlewares=auto-https@docker"
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
