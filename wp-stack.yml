@@ -41,8 +41,6 @@ services:
         - "traefik.http.middlewares.auto-https.redirectscheme.permanent=true"
         - "traefik.http.routers.${DEV_UID}.middlewares=auto-https@docker"
     environment:
-      APACHE_RUN_USER: root
-      APACHE_RUN_GROUP: root
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
