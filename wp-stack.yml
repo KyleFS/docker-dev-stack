@@ -24,6 +24,7 @@ services:
     ports:
       - "80"
       - "9000"
+      - "9001"
     deploy:
       labels:
         - "traefik.enable=true"
@@ -36,7 +37,7 @@ services:
         - "traefik.tcp.routers.${DEV_UID}-xdebug.rule=HostSNI(`${DEV_WAN_HOSTNAME}`)"
         - "traefik.tcp.routers.${DEV_UID}-xdebug.entrypoints=xdebug"
         - "traefik.tcp.routers.${DEV_UID}-xdebug.service=${DEV_UID}-xdebug-svc"
-        - "traefik.tcp.services.${DEV_UID}-xdebug-svc.loadbalancer.server.port=9000"
+        - "traefik.tcp.services.${DEV_UID}-xdebug-svc.loadbalancer.server.port=9001"
         - "traefik.http.middlewares.auto-https.redirectscheme.scheme=https"
         - "traefik.http.middlewares.auto-https.redirectscheme.permanent=true"
         - "traefik.http.routers.${DEV_UID}.middlewares=auto-https@docker"
