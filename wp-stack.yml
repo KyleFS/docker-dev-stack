@@ -34,7 +34,7 @@ services:
         - "traefik.http.routers.${DEV_UID}-secure.tls.certresolver=lehttpresolver"
         - "traefik.http.routers.${DEV_UID}-secure.entrypoints=websecure"
         - "traefik.http.services.${DEV_UID}.loadbalancer.server.port=80"
-        - "traefik.tcp.routers.${DEV_UID}-xdebug.rule=HostSNI(`${DEV_LAN_HOSTNAME}`)"
+        - "traefik.tcp.routers.${DEV_UID}-xdebug.rule=HostSNI(`${DEV_WAN_HOSTNAME}`)"
         - "traefik.tcp.routers.${DEV_UID}-xdebug.entrypoints=xdebug"
         - "traefik.tcp.routers.${DEV_UID}-xdebug.service=${DEV_UID}-xdebug-svc"
         - "traefik.tcp.services.${DEV_UID}-xdebug-svc.loadbalancer.server.port=9000"
