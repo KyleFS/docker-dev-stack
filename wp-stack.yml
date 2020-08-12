@@ -43,9 +43,7 @@ services:
       - frontend
 
   web:
-    image: nginx
-    volumes:
-      - ./templates:/etc/nginx/templates
+    image: kylefs/dev-nginx:latest
     ports:
       - "80"
     deploy:
