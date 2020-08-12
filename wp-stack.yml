@@ -4,7 +4,7 @@ services:
   db:
     image: mysql:5.7
     volumes:
-      - db_data:/var/lib/mysql
+      - "db_data:/var/lib/mysql"
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
@@ -45,6 +45,8 @@ services:
     image: kylefs/dev-nginx:latest
     ports:
       - "80"
+    volumes:
+      - "wp_data:/var/www/html"
     deploy:
       labels:
         - "traefik.enable=true"
