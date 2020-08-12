@@ -16,6 +16,7 @@ services:
 
   wordpress:
     image: kylefs/dev-wp:latest
+    user: "root:root"
     volumes:
       - "wp_data:/var/www/html"
     restart: unless-stopped
@@ -43,6 +44,7 @@ services:
 
   web:
     image: kylefs/dev-nginx:latest
+    user: "root:root"
     ports:
       - "80"
     volumes:
