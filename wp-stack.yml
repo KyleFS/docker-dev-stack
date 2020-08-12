@@ -14,7 +14,7 @@ services:
     networks:
       - backend
 
-  wordpress_fpm:
+  wordpress:
     image: wordpress:fpm
     volumes:
       - "wp_data:/var/www/html"
@@ -22,7 +22,6 @@ services:
     depends_on:
       - db
     ports:
-      - "9000"
       - "9001"
     deploy:
       labels:
