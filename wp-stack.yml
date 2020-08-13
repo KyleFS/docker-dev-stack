@@ -9,8 +9,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
       MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
+      MYSQL_USER: ${DEV_STACK_USER}
+      MYSQL_PASSWORD: ${DEV_STACK_PASS}
     networks:
       - backend
 
@@ -25,8 +25,8 @@ services:
       - "9001"
     environment:
       WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_USER: ${DEV_STACK_USER}
+      WORDPRESS_DB_PASSWORD: ${DEV_STACK_PASS}
       WORDPRESS_CONFIG_EXTRA: |
         define( 'BACKUPBUDDY_API_ENABLE', true );
     networks:
@@ -57,10 +57,10 @@ services:
   sftp:
     image: atmoz/sftp
     volumes:
-      - "wp_data:/home/foo/html"
+      - "wp_data:/home/${DEV_STACK_USER}/html"
     ports:
       - "22"
-    command: foo:pass:33:33
+    command: ${DEV_STACK_USER}:${DEV_STACK_PASS}:33:33
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
