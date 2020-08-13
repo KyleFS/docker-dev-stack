@@ -61,13 +61,13 @@ services:
       - proxy
       - frontend
 
-    sftp:
-      image: atmoz/sftp
-      volumes:
-        - "wp_data:/home/foo/html"
-      ports:
-        - "22"
-      command: foo:pass:33:33
+  sftp:
+    image: atmoz/sftp
+    volumes:
+      - "wp_data:/home/foo/html"
+    ports:
+      - "22"
+    command: foo:pass:33:33
 
 volumes:
   db_data:
