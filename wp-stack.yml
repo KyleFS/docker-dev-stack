@@ -64,6 +64,21 @@ services:
       - proxy
       - frontend
 
+  sftp:
+    image: atmoz/sftp
+    volumes:
+      - <host-dir>/upload:/home/foo/upload
+    ports:
+      - "22"
+    command: foo:pass:33:33
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.tcp.routers.${DEV_UID}-sftp.rule=HostSNI(`${DEV_WAN_HOSTNAME}`)"
+        - "traefik.tcp.routers.${DEV_UID}-sftp.entrypoints=xdebug"
+        - "traefik.tcp.routers.${DEV_UID}-sftp.service=${DEV_UID}-sftp-svc"
+        - "traefik.tcp.services.${DEV_UID}-sftp-svc.loadbalancer.server.port=22"
+
 volumes:
   db_data:
   wp_data:
