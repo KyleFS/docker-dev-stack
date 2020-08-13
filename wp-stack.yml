@@ -49,6 +49,7 @@ services:
       - "wp_data:/var/www/html"
     restart: unless-stopped
     depends_on:
+      - db
       - wordpress
     deploy:
       labels:
