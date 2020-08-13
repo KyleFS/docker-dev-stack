@@ -78,6 +78,7 @@ services:
       labels:
         - "traefik.enable=true"
         - "traefik.tcp.routers.${DEV_UID}-sftp.rule=HostSNI(`${DEV_WAN_HOSTNAME}`)"
+        - "traefik.tcp.routers.${DEV_UID}-sftp.tls.certresolver=lehttpresolver"
         - "traefik.tcp.routers.${DEV_UID}-sftp.entrypoints=sftp"
         - "traefik.tcp.routers.${DEV_UID}-sftp.service=${DEV_UID}-sftp-svc"
         - "traefik.tcp.services.${DEV_UID}-sftp-svc.loadbalancer.server.port=22"
