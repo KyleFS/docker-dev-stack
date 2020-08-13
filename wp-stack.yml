@@ -38,6 +38,9 @@ services:
     image: kylefs/dev-nginx:latest
     volumes:
       - "wp_data:/var/www/html"
+    depends_on:
+      - wordpress
+      - phpmyadmin
     deploy:
       labels:
         - "traefik.enable=true"
@@ -63,7 +66,7 @@ services:
     command: ${DEV_STACK_USER}:${DEV_STACK_PASS}:33:33
 
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
+    image: phpmyadmin/phpmyadmin:fpm
     depends_on:
       - db
     environment:
@@ -71,8 +74,6 @@ services:
       PMA_PORT: 3306
       PMA_ARBITRARY: 1
       UPLOAD_LIMIT: 120M
-    ports:
-      - "80"
     networks:
       - backend
       - frontend
