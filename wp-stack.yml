@@ -24,7 +24,8 @@ services:
     ports:
       - "9001"
     environment:
-      USER: wodby:wodby
+      PHP_FPM_USER: wodby
+      PHP_FPM_GROUP: wodby
     deploy:
       labels:
         - "traefik.enable=true"
