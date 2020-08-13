@@ -12,7 +12,6 @@ services:
       - "--api.insecure"
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
-      - "--entrypoints.xdebug.address=:9001"
       - "--certificatesresolvers.lehttpresolver.acme.tlschallenge=true"
       - "--certificatesresolvers.lehttpresolver.acme.email=${ADMIN_EMAIL}"
       - "--certificatesresolvers.lehttpresolver.acme.storage=letsencrypt/acme.json"

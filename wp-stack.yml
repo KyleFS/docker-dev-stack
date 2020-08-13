@@ -23,13 +23,6 @@ services:
       - db
     ports:
       - "9001"
-    deploy:
-      labels:
-        - "traefik.enable=true"
-        - "traefik.tcp.routers.${DEV_UID}-xdebug.rule=HostSNI(`${DEV_WAN_HOSTNAME}`)"
-        - "traefik.tcp.routers.${DEV_UID}-xdebug.entrypoints=xdebug"
-        - "traefik.tcp.routers.${DEV_UID}-xdebug.service=${DEV_UID}-xdebug-svc"
-        - "traefik.tcp.services.${DEV_UID}-xdebug-svc.loadbalancer.server.port=9001"
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
