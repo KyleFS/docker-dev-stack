@@ -6,7 +6,11 @@ services:
     volumes:
       - "/var/lib/docker/volumes:/docker_volumes"
       - "/var/run/docker.sock:/var/run/docker.sock"
+      - "smb_data:/etc/samba/"
     restart: unless-stopped
     ports:
       - "139:139"
       - "445:445"
+
+volumes:
+  smb_data:
