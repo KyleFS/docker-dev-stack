@@ -41,6 +41,8 @@ services:
     depends_on:
       - wordpress
       - phpmyadmin
+    ports:
+      - "8080"
     deploy:
       labels:
         - "traefik.enable=true"
