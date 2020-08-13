@@ -67,7 +67,7 @@ services:
   sftp:
     image: atmoz/sftp
     volumes:
-      - <host-dir>/upload:/home/foo/upload
+      - "wp_data:/home/foo/html"
     ports:
       - "22"
     command: foo:pass:33:33
@@ -78,6 +78,8 @@ services:
         - "traefik.tcp.routers.${DEV_UID}-sftp.entrypoints=xdebug"
         - "traefik.tcp.routers.${DEV_UID}-sftp.service=${DEV_UID}-sftp-svc"
         - "traefik.tcp.services.${DEV_UID}-sftp-svc.loadbalancer.server.port=22"
+    networks:
+      - proxy
 
 volumes:
   db_data:
