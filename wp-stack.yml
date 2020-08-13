@@ -16,6 +16,7 @@ services:
 
   wordpress:
     image: kylefs/dev-wp:latest
+    user: "root:root"
     volumes:
       - "wp_data:/var/www/html"
     restart: unless-stopped
