@@ -3,8 +3,6 @@ version: '3.3'
 services:
   db:
     image: mysql:5.7
-    depends_on:
-      - fpm
     volumes:
       - "db_data:/var/lib/mysql"
     restart: unless-stopped
@@ -16,16 +14,15 @@ services:
     networks:
       - backend
 
-  fpm:
+  wordpress:
     image: kylefs/dev-wp:latest
     volumes:
       - "wp_data:/var/www/html"
     restart: unless-stopped
+    depends_on:
+      - db
     ports:
       - "9001"
-    environment:
-      PHP_FPM_USER: wodby
-      PHP_FPM_GROUP: wodby
     deploy:
       labels:
         - "traefik.enable=true"
@@ -33,6 +30,12 @@ services:
         - "traefik.tcp.routers.${DEV_UID}-xdebug.entrypoints=xdebug"
         - "traefik.tcp.routers.${DEV_UID}-xdebug.service=${DEV_UID}-xdebug-svc"
         - "traefik.tcp.services.${DEV_UID}-xdebug-svc.loadbalancer.server.port=9001"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_CONFIG_EXTRA: |
+        define( 'BACKUPBUDDY_API_ENABLE', true );
     networks:
       - proxy
       - backend
@@ -44,10 +47,6 @@ services:
       - "80"
     volumes:
       - "wp_data:/var/www/html"
-    restart: unless-stopped
-    depends_on:
-      - db
-      - fpm
     deploy:
       labels:
         - "traefik.enable=true"
@@ -63,6 +62,7 @@ services:
     networks:
       - proxy
       - frontend
+
 volumes:
   db_data:
   wp_data:
