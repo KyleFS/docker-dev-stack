@@ -43,8 +43,6 @@ services:
 
   web:
     image: kylefs/dev-nginx:latest
-    ports:
-      - "80"
     volumes:
       - "wp_data:/var/www/html"
     deploy:
@@ -62,6 +60,14 @@ services:
     networks:
       - proxy
       - frontend
+
+    sftp:
+      image: atmoz/sftp
+      volumes:
+        - "wp_data:/home/foo/html"
+      ports:
+        - "22"
+      command: foo:pass:33:33
 
 volumes:
   db_data:
