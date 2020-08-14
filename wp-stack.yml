@@ -71,7 +71,7 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:fpm
     volumes:
-      - "pma_data:/etc/phpmyadmin"
+      - "pma_data:/var/www/html"
     depends_on:
       - db
     environment:
