@@ -68,7 +68,7 @@ services:
       - "22"
     command: ${DEV_STACK_USER}:${DEV_STACK_PASS}:33:33
 
-  phpmyadmin:
+  pma:
     image: phpmyadmin/phpmyadmin:fpm
     volumes:
       - "pma_data:/var/www/html"
