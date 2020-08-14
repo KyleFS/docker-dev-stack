@@ -41,7 +41,7 @@ services:
       - "pma_data:/var/www/pma"
     depends_on:
       - wordpress
-      - phpmyadmin
+      - pma
     ports:
       - "8080"
     deploy:
