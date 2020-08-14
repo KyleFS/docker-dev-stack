@@ -38,7 +38,7 @@ services:
     image: kylefs/dev-nginx:latest
     volumes:
       - "wp_data:/var/www/html"
-      - "pma_data:/var/www/html2"
+      - "pma_data:/var/www/pma"
     depends_on:
       - wordpress
       - phpmyadmin
