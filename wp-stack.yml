@@ -69,7 +69,7 @@ services:
     command: ${DEV_STACK_USER}:${DEV_STACK_PASS}:33:33
 
   pma:
-    image: phpmyadmin/phpmyadmin:fpm
+    image: phpmyadmin/phpmyadmin:latest
     volumes:
       - "pma_data:/var/www/html"
     depends_on:
