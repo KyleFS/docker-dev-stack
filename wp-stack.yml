@@ -70,7 +70,6 @@ services:
 
   pma:
     image: phpmyadmin/phpmyadmin:fpm
-    user: "33:33"
     volumes:
       - "/sessions"
       - "pma_data:/var/www/html"
