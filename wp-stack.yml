@@ -42,6 +42,10 @@ services:
     restart: unless-stopped
     depends_on:
       - wordpress
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: ${DEV_STACK_USER}
+      WORDPRESS_DB_PASSWORD: ${DEV_STACK_PASS}
     networks:
       - backend
 
