@@ -34,8 +34,8 @@ services:
       - backend
       - frontend
 
-  nginx:
-    image: kylefs/dev-nginx:latest
+  apache:
+    image: kylefs/dev-apache:latest
     volumes:
       - "wp_data:/var/www/html"
       - "pma_data:/var/www/pma"
