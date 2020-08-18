@@ -34,6 +34,17 @@ services:
       - backend
       - frontend
 
+  cli:
+    image: wordpress:cli
+    user: "33:33"
+    volumes:
+      - "wp_data:/var/www/html"
+    restart: unless-stopped
+    depends_on:
+      - wordpress
+    networks:
+      - backend
+
   apache:
     image: kylefs/dev-apache:latest
     volumes:
