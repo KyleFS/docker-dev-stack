@@ -44,6 +44,7 @@ services:
       - wordpress
     networks:
       - backend
+    command: wp core install --path="/var/www/html" --url="localhost" --title="${DEV_WP_TITLE}" --admin_user="${DEV_WP_USER}" --admin_password="${DEV_WP_PASS}" --admin_email="${DEV_WP_EMAIL}"
 
   nginx:
     image: kylefs/dev-nginx:latest
