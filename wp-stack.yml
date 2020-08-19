@@ -39,7 +39,7 @@ services:
   cli:
     image: wordpress:cli
     restart: "no"
-    user: xfs
+    user: 33
     volumes:
       - "wp_data:/var/www/html"
     depends_on:
