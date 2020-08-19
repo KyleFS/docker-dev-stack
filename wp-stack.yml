@@ -48,7 +48,7 @@ services:
       - backend
     command: >
       /bin/sh -c '
-      sleep 10;
+      sleep 5;
       wp core install --path="/var/www/html" --url="https://${DEV_WAN_HOSTNAME}" --title="${DEV_WP_TITLE}" --admin_user=${DEV_WP_USER} --admin_password=${DEV_WP_PASS} --admin_email=${DEV_WP_EMAIL}
       '
 
