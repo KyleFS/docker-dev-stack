@@ -42,6 +42,11 @@ services:
       WORDPRESS_DEBUG: 1
       WORDPRESS_CONFIG_EXTRA: |
         define( 'BACKUPBUDDY_API_ENABLE', true );
+    command: >
+      /bin/sh -c '
+      sleep 10;
+      wp core install --path="/var/www/html" --url="https://miles.dev.kylespiller.com" --title="Local Wordpress By Docker" --admin_user=admin --admin_password=secret --admin_email=foo@bar.com
+      '
     depends_on:
       - db
       - wordpress
