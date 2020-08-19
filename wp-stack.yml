@@ -23,6 +23,12 @@ services:
       - db
     ports:
       - "9001"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: ${DEV_STACK_USER}
+      WORDPRESS_DB_PASSWORD: ${DEV_STACK_PASS}
+      WORDPRESS_CONFIG_EXTRA: |
+        define( 'BACKUPBUDDY_API_ENABLE', true );
     networks:
       - proxy
       - backend
@@ -38,11 +44,6 @@ services:
       - wordpress
     networks:
       - backend
-    command: >
-      /bin/sh -c '
-      sleep 10;
-      wp core install --path="/var/www/html" --url="https://miles.dev.kylespiller.com/" --title="Local Wordpress By Docker" --admin_user=admin --admin_password=secret --admin_email=foo@bar.com
-      '
 
   apache:
     image: kylefs/dev-apache:latest
