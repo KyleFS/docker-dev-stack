@@ -27,6 +27,8 @@ services:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: ${DEV_STACK_USER}
       WORDPRESS_DB_PASSWORD: ${DEV_STACK_PASS}
+      WORDPRESS_TABLE_PREFIX: "wp_"
+      WORDPRESS_DEBUG: 1
       WORDPRESS_CONFIG_EXTRA: |
         define( 'BACKUPBUDDY_API_ENABLE', true );
     networks:
@@ -44,6 +46,11 @@ services:
       - wordpress
     networks:
       - backend
+    command: >
+      /bin/sh -c '
+      sleep 10;
+      wp core install --path="/var/www/html" --url="https://${DEV_WAN_HOSTNAME}" --title="${DEV_WP_TITLE}" --admin_user=${DEV_WP_USER} --admin_password=${DEV_WP_PASS} --admin_email=${DEV_WP_EMAIL}
+      '
 
   apache:
     image: kylefs/dev-apache:latest
