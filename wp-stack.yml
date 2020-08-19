@@ -41,7 +41,7 @@ services:
     command: >
       /bin/sh -c '
       sleep 10;
-      wp core install --path="/var/www/html" --url="https://${DEV_WAN_HOSTNAME}" --title="${DEV_WP_TITLE}" --admin_user=${DEV_WP_USER} --admin_password=${DEV_WP_PASS} --admin_email=${DEV_WP_EMAIL}
+      wp core install --path="/var/www/html" --url="https://miles.dev.kylespiller.com/" --title="Local Wordpress By Docker" --admin_user=admin --admin_password=secret --admin_email=foo@bar.com
       '
 
   apache:
