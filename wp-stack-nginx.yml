@@ -5,7 +5,7 @@ services:
     image: mysql:5.7
     volumes:
       - "db_data:/var/lib/mysql"
-    restart: unless-stopped
+    restart: "no"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
       MYSQL_DATABASE: wordpress
@@ -16,9 +16,17 @@ services:
 
   wordpress:
     image: kylefs/dev-wp:latest
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: ${DEV_STACK_USER}
+      WORDPRESS_DB_PASSWORD: ${DEV_STACK_PASS}
+      WORDPRESS_TABLE_PREFIX: "wp_"
+      WORDPRESS_DEBUG: 1
+      WORDPRESS_CONFIG_EXTRA: |
+        define( 'BACKUPBUDDY_API_ENABLE', true );
     volumes:
       - "wp_data:/var/www/html"
-    restart: unless-stopped
+    restart: "no"
     depends_on:
       - db
     ports:
@@ -27,22 +35,6 @@ services:
       - proxy
       - backend
       - frontend
-
-  cli:
-    image: wordpress:cli
-    user: "33:33"
-    volumes:
-      - "wp_data:/var/www/html"
-    restart: unless-stopped
-    depends_on:
-      - wordpress
-    networks:
-      - backend
-    command: >
-      /bin/sh -c '
-      sleep 10;
-      wp core install --path="/var/www/html" --url="https://${DEV_WAN_HOSTNAME}" --title="${DEV_WP_TITLE}" --admin_user=${DEV_WP_USER} --admin_password=${DEV_WP_PASS} --admin_email=${DEV_WP_EMAIL}
-      '
 
   nginx:
     image: kylefs/dev-nginx:latest
@@ -72,6 +64,7 @@ services:
 
   sftp:
     image: atmoz/sftp
+    restart: "no"
     volumes:
       - "wp_data:/home/${DEV_STACK_USER}/html"
     ports:
@@ -80,6 +73,7 @@ services:
 
   pma:
     image: phpmyadmin/phpmyadmin:fpm
+    restart: "no"
     volumes:
       - "/sessions"
       - "pma_data:/var/www/html"
