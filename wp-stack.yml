@@ -16,6 +16,14 @@ services:
 
   wordpress:
     image: kylefs/dev-wp:latest
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: ${DEV_STACK_USER}
+      WORDPRESS_DB_PASSWORD: ${DEV_STACK_PASS}
+      WORDPRESS_TABLE_PREFIX: "wp_"
+      WORDPRESS_DEBUG: 1
+      WORDPRESS_CONFIG_EXTRA: |
+        define( 'BACKUPBUDDY_API_ENABLE', true );
     volumes:
       - "wp_data:/var/www/html"
     restart: "no"
@@ -27,32 +35,6 @@ services:
       - proxy
       - backend
       - frontend
-
-  cli:
-    image: wordpress:cli
-    restart: "no"
-    user: "33:33"
-    volumes:
-      - "wp_data:/var/www/html"
-    environment:
-      WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_USER: ${DEV_STACK_USER}
-      WORDPRESS_DB_PASSWORD: ${DEV_STACK_PASS}
-      WORDPRESS_TABLE_PREFIX: "wp_"
-      WORDPRESS_DEBUG: 1
-      WORDPRESS_CONFIG_EXTRA: |
-        define( 'BACKUPBUDDY_API_ENABLE', true );
-    command: >
-      /bin/sh -c '
-      wp core download;
-      sleep 20;
-      wp core install --path="/var/www/html" --url="https://miles.dev.kylespiller.com" --title="Local Wordpress By Docker" --admin_user=admin --admin_password=secret --admin_email=foo@bar.com
-      '
-    depends_on:
-      - db
-      - wordpress
-    networks:
-      - backend
 
   apache:
     image: kylefs/dev-apache:latest
