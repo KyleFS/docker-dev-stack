@@ -38,6 +38,7 @@ services:
 
   cli:
     image: wordpress:cli
+    restart: "no"
     user: xfs
     volumes:
       - "wp_data:/var/www/html"
