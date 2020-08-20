@@ -24,6 +24,10 @@ services:
       WORDPRESS_DEBUG: 1
       WORDPRESS_CONFIG_EXTRA: |
         define( 'BACKUPBUDDY_API_ENABLE', true );
+        //Required for load balancers https://developer.wordpress.org/reference/functions/is_ssl/
+        if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+          $_SERVER['HTTPS'] = 'on';
+        }
     volumes:
       - "wp_data:/var/www/html"
     restart: "no"
