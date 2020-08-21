@@ -15,7 +15,7 @@ services:
       - backend
 
   wordpress:
-    image: kylefs/dev-wp:latest
+    image: kylefs/dev-wp:no_xdebug
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: ${DEV_STACK_USER}
@@ -30,8 +30,6 @@ services:
     restart: "no"
     depends_on:
       - db
-    ports:
-      - "9001"
     networks:
       - proxy
       - backend
