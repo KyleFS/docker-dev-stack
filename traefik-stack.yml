@@ -12,6 +12,7 @@ services:
       - "--api.insecure"
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
+      - "--entrypoints.websecure.transport.respondingTimeouts.idleTimeout=600"
       - "--certificatesresolvers.lehttpresolver.acme.tlschallenge=true"
       - "--certificatesresolvers.lehttpresolver.acme.email=${ADMIN_EMAIL}"
       - "--certificatesresolvers.lehttpresolver.acme.storage=letsencrypt/acme.json"
