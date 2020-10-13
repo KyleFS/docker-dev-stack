@@ -46,6 +46,7 @@ services:
       - pma
     ports:
       - "8080"
+      - "80"
     restart: "no"
     deploy:
       labels:
