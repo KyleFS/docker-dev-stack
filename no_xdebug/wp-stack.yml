@@ -51,6 +51,7 @@ services:
       labels:
         - "traefik.enable=true"
         - "traefik.http.services.${DEV_UID}.loadbalancer.server.port=80"
+        - "traefik.docker.network=proxy"
         # HTTP
         - "traefik.http.routers.${DEV_UID}.entrypoints=web"
         - "traefik.http.routers.${DEV_UID}.rule=Host(`${DEV_WAN_HOSTNAME}`)"
