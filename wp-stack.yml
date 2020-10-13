@@ -52,21 +52,15 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        # HTTP
         - "traefik.http.routers.${DEV_UID}.entrypoints=web"
         - "traefik.http.routers.${DEV_UID}.rule=Host(`${DEV_WAN_HOSTNAME}`)"
         - "traefik.http.routers.${DEV_UID}.middlewares=auto-https@docker"
-
-        # HTTPS
         - "traefik.http.routers.${DEV_UID}-secure.entrypoints=websecure"
         - "traefik.http.routers.${DEV_UID}-secure.rule=Host(`${DEV_WAN_HOSTNAME}`)"
         - "traefik.http.routers.${DEV_UID}-secure.tls=true"
         - "traefik.http.routers.${DEV_UID}-secure.tls.certresolver=lehttpresolver"
-
-        # Middleware
         - "traefik.http.middlewares.auto-https.redirectscheme.scheme=https"
         - "traefik.http.middlewares.auto-https.redirectscheme.permanent=true"
-        -
     networks:
       - proxy
       - frontend
