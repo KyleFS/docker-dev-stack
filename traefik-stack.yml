@@ -9,6 +9,7 @@ services:
       - "--providers.docker"
       - "--providers.docker.swarmmode"
       - "--providers.docker.constraints=Label(`traefik.enable`,`true`)"
+      - "--providers.docker.useBindPortIP=true"
       - "--api.insecure"
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
