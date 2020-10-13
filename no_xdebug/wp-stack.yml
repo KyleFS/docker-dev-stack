@@ -11,6 +11,9 @@ services:
       MYSQL_DATABASE: wordpress
       MYSQL_USER: ${DEV_STACK_USER}
       MYSQL_PASSWORD: ${DEV_STACK_PASS}
+    deploy:
+      labels:
+        - "traefik.enable=false"
     networks:
       - backend
 
@@ -25,6 +28,9 @@ services:
       WORDPRESS_CONFIG_EXTRA: |
         define( 'BACKUPBUDDY_API_ENABLE', true );
         define( 'FORCE_SSL_ADMIN', true );
+    deploy:
+      labels:
+        - "traefik.enable=false"
     volumes:
       - "wp_data:/var/www/html"
     restart: "no"
@@ -76,6 +82,9 @@ services:
     ports:
       - "22"
     command: ${DEV_STACK_USER}:${DEV_STACK_PASS}:33:33
+    deploy:
+      labels:
+        - "traefik.enable=false"
 
   pma:
     image: phpmyadmin/phpmyadmin:fpm
@@ -90,6 +99,9 @@ services:
       PMA_PORT: 3306
       PMA_ARBITRARY: 1
       UPLOAD_LIMIT: 300M
+    deploy:
+      labels:
+        - "traefik.enable=false"
     networks:
       - backend
       - frontend
