@@ -18,7 +18,6 @@ services:
       - "--certificatesresolvers.lehttpresolver.acme.storage=letsencrypt/acme.json"
     deploy:
       labels:
-        - "traefik.docker.network=proxy"
         - "traefik.http.middlewares.auto-https.redirectscheme.scheme=https"
         - "traefik.http.middlewares.auto-https.redirectscheme.permanent=true"
     ports:
