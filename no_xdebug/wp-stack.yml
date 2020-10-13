@@ -60,7 +60,6 @@ services:
         - "traefik.http.routers.${DEV_UID}-https.entrypoints=websecure"
         - "traefik.http.routers.${DEV_UID}-https.rule=Host(`${DEV_WAN_HOSTNAME}`)"
         - "traefik.http.routers.${DEV_UID}-https.service=${DEV_UID}"
-        - "traefik.http.routers.${DEV_UID}-https.tls=true"
         - "traefik.http.routers.${DEV_UID}-https.tls.certresolver=lehttpresolver"
         - "traefik.http.middlewares.auto-https.redirectscheme.scheme=https"
         - "traefik.http.middlewares.auto-https.redirectscheme.permanent=true"
