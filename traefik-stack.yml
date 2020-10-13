@@ -8,7 +8,6 @@ services:
       - "--log.level=DEBUG"
       - "--providers.docker"
       - "--providers.docker.swarmmode"
-      - "--providers.docker.constraints=Label(`traefik.enable`,`true`)"
       - "--providers.docker.useBindPortIP=true"
       - "--api.insecure"
       - "--entrypoints.web.address=:80"
