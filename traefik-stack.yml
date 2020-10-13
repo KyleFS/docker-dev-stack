@@ -9,6 +9,7 @@ services:
       - "--providers.docker=true"
       - "--providers.docker.swarmMode=true"
       - "--providers.docker.network=proxy"
+      - "--providers.docker.exposedByDefault=false"
       - "--api.insecure"
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
