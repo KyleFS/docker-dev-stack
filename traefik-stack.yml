@@ -8,7 +8,6 @@ services:
       - "--log.level=DEBUG"
       - "--providers.docker"
       - "--providers.docker.swarmmode"
-      - "--providers.docker.exposedbydefault=false"
       - "--api.insecure"
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
