@@ -55,7 +55,13 @@ services:
         - "traefik.http.routers.${DEV_UID}.entrypoints=web"
         - "traefik.http.routers.${DEV_UID}.rule=Host(`${DEV_WAN_HOSTNAME}`)"
         - "traefik.http.routers.${DEV_UID}.service=${DEV_UID}"
-
+        - "traefik.http.routers.${DEV_UID}.middlewares=auto-https@docker"
+        # HTTPS
+        - "traefik.http.routers.${DEV_UID}-secure.entrypoints=websecure"
+        - "traefik.http.routers.${DEV_UID}-secure.rule=Host(`${DEV_WAN_HOSTNAME}`)"
+        - "traefik.http.routers.${DEV_UID}-secure.service=${DEV_UID}"
+        - "traefik.http.routers.${DEV_UID}-secure.tls=true"
+        - "traefik.http.routers.${DEV_UID}-secure.tls.certresolver=lehttpresolver"
     networks:
       - proxy
       - frontend
