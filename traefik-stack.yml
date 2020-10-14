@@ -5,7 +5,6 @@ services:
     # The official v2 Traefik docker image
     image: traefik:v2.3
     command:
-      - "--log.level=DEBUG"
       - "--providers.docker"
       - "--providers.docker.swarmmode"
       - "--providers.docker.exposedByDefault=false"
