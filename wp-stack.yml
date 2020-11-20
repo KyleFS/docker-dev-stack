@@ -60,9 +60,6 @@ services:
         - "traefik.http.services.${DEV_UID}-secure.loadbalancer.server.port=80"
         - "traefik.http.routers.${DEV_UID}-secure.tls=true"
         - "traefik.http.routers.${DEV_UID}-secure.tls.certresolver=lehttpresolver"
-        - "traefik.http.routers.${DEV_UID}.middlewares=auto-https@docker"
-        - "traefik.http.middlewares.auto-https.redirectscheme.scheme=https"
-        - "traefik.http.middlewares.auto-https.redirectscheme.permanent=true"
     networks:
       - proxy
       - frontend
