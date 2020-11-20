@@ -50,13 +50,16 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.services.${DEV_UID}.loadbalancer.server.port=80"
+        #HTTP
+        - "traefik.http.services.${DEV_UID}-http.loadbalancer.server.port=80"
         - "traefik.http.routers.${DEV_UID}-http.entrypoints=web"
         - "traefik.http.routers.${DEV_UID}-http.rule=Host(`${DEV_WAN_HOSTNAME}`)"
-        - "traefik.http.routers.${DEV_UID}-http.service=${DEV_UID}"
+        - "traefik.http.routers.${DEV_UID}-http.service=${DEV_UID}-http"
+        #HTTPS
+        - "traefik.http.services.${DEV_UID}-https.loadbalancer.server.port=80"
         - "traefik.http.routers.${DEV_UID}-https.entrypoints=websecure"
         - "traefik.http.routers.${DEV_UID}-https.rule=Host(`${DEV_WAN_HOSTNAME}`)"
-        - "traefik.http.routers.${DEV_UID}-https.service=${DEV_UID}"
+        - "traefik.http.routers.${DEV_UID}-https.service=${DEV_UID}-https"
         - "traefik.http.routers.${DEV_UID}-https.tls.certresolver=lehttpresolver"
     networks:
       - proxy
