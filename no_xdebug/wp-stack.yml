@@ -54,7 +54,6 @@ services:
         - "traefik.http.routers.${DEV_UID}-https.entrypoints=websecure"
         - "traefik.http.routers.${DEV_UID}-https.rule=Host(`${DEV_WAN_HOSTNAME}`)"
         - "traefik.http.routers.${DEV_UID}-https.service=${DEV_UID}-https"
-        - "traefik.http.routers.${DEV_UID}-https.tls.certresolver=lehttpresolver"
     networks:
       - proxy
       - frontend
