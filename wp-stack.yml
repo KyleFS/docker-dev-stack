@@ -25,6 +25,8 @@ services:
       WORDPRESS_CONFIG_EXTRA: |
         define( 'BACKUPBUDDY_API_ENABLE', true );
         define( 'FORCE_SSL_ADMIN', true );
+    ports:
+      - "9001"
     volumes:
       - "wp_data:/var/www/html"
     restart: "no"
