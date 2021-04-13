@@ -30,10 +30,7 @@ services:
     restart: "no"
     depends_on:
       - db
-    ports:
-      - "9001"
     networks:
-      - proxy
       - backend
       - frontend
 
@@ -48,19 +45,23 @@ services:
       - pma
     ports:
       - "8080"
+      - "80"
     restart: "no"
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.${DEV_UID}.entrypoints=web"
-        - "traefik.http.routers.${DEV_UID}-secure.entrypoints=websecure"
-        - "traefik.http.routers.${DEV_UID}.rule=Host(`${DEV_WAN_HOSTNAME}`)"
-        - "traefik.http.routers.${DEV_UID}-secure.rule=Host(`${DEV_WAN_HOSTNAME}`)"
         - "traefik.http.services.${DEV_UID}.loadbalancer.server.port=80"
-        - "traefik.http.services.${DEV_UID}-secure.loadbalancer.server.port=80"
-        - "traefik.http.routers.${DEV_UID}-secure.tls=true"
-        - "traefik.http.routers.${DEV_UID}-secure.tls.certresolver=lehttpresolver"
-        - "traefik.http.routers.${DEV_UID}.middlewares=auto-https@docker"
+        # HTTP
+        - "traefik.http.routers.${DEV_UID}-http.entrypoints=web"
+        - "traefik.http.routers.${DEV_UID}-http.rule=Host(`${DEV_WAN_HOSTNAME}`)"
+        - "traefik.http.routers.${DEV_UID}-http.service=${DEV_UID}"
+        - "traefik.http.routers.${DEV_UID}-http.middlewares=auto-https@docker"
+        # HTTPS
+        - "traefik.http.routers.${DEV_UID}-https.entrypoints=websecure"
+        - "traefik.http.routers.${DEV_UID}-https.rule=Host(`${DEV_WAN_HOSTNAME}`)"
+        - "traefik.http.routers.${DEV_UID}-https.service=${DEV_UID}"
+        - "traefik.http.routers.${DEV_UID}-https.tls=true"
+        - "traefik.http.routers.${DEV_UID}-https.tls.certresolver=lehttpresolver"
         - "traefik.http.middlewares.auto-https.redirectscheme.scheme=https"
         - "traefik.http.middlewares.auto-https.redirectscheme.permanent=true"
     networks:
