@@ -36,7 +36,7 @@ services:
       - backend
       - frontend
     command:
-      [${DEV_XDEBUG_MODE}, ${DEV_XDEBUG_IP}]
+      ["${DEV_XDEBUG_MODE}", "${DEV_XDEBUG_IP}"]
 
   apache:
     image: kylefs/dev-apache:latest
