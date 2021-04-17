@@ -2,8 +2,7 @@ version: '3'
 
 services:
   reverse-proxy:
-    # The official v2 Traefik docker image
-    image: traefik:v2.3
+    image: traefik:v2.4
     command:
       - "--providers.docker"
       - "--providers.docker.swarmmode"
