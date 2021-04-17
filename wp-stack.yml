@@ -36,7 +36,7 @@ services:
       - backend
       - frontend
     command:
-      ["debug,profile", "192.168.1.123"]
+      [${DEV_XDEBUG_MODE}, ${DEV_XDEBUG_IP}]
 
   apache:
     image: kylefs/dev-apache:latest
