@@ -35,6 +35,8 @@ services:
     networks:
       - backend
       - frontend
+    command:
+      ["dev-entrypoint.sh", "profile", "192.168.1.123"]
 
   apache:
     image: kylefs/dev-apache:latest
