@@ -77,7 +77,7 @@ services:
     image: atmoz/sftp
     restart: "no"
     volumes:
-      - "wp_data:/home/${DEV_STACK_USER}/wordpress"
+      - "wp_data:/home/${DEV_STACK_USER}/html"
       - "xdebug_data:/home/${DEV_STACK_USER}/xdebug"
     ports:
       - "22"
