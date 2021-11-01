@@ -45,6 +45,7 @@ services:
     volumes:
       - "wp_data:/var/www/html"
       - "pma_data:/var/www/pma"
+      - "log_data:/var/www/log"
     depends_on:
       - db
       - wordpress
