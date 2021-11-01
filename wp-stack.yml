@@ -30,7 +30,7 @@ services:
     volumes:
       - "wp_data:/var/www/html"
       - "xdebug_data:/var/www/xdebug"
-      - "log_data:/var/www/log"
+      - "log_data/${DEV_UID}:/var/www/log"
     restart: "no"
     depends_on:
       - db
@@ -45,7 +45,7 @@ services:
     volumes:
       - "wp_data:/var/www/html"
       - "pma_data:/var/www/pma"
-      - "log_data:/var/www/log"
+      - "log_data/${DEV_UID}:/var/www/log"
     depends_on:
       - db
       - wordpress
@@ -81,7 +81,7 @@ services:
     volumes:
       - "wp_data:/home/${DEV_STACK_USER}/html"
       - "xdebug_data:/home/${DEV_STACK_USER}/xdebug"
-      - "log_data:/home/${DEV_STACK_USER}/log"
+      - "log_data/${DEV_UID}:/home/${DEV_STACK_USER}/log"
     ports:
       - "22"
     command: ${DEV_STACK_USER}:${DEV_STACK_PASS}:33:33
@@ -109,6 +109,12 @@ volumes:
   xdebug_data:
   pma_data:
   log_data:
+    external: true
+    driver: local
+    driver_opts:
+        type: 'none'
+        o: 'bind'
+        device: '/var/log/docker-dev'
 
 networks:
   backend:
