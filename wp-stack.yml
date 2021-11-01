@@ -109,7 +109,6 @@ volumes:
   xdebug_data:
   pma_data:
   log_data:
-    external: true
     driver: local
     driver_opts:
         type: 'none'
