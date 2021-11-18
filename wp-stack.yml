@@ -14,7 +14,7 @@ services:
     networks:
       - backend
     secrets:
-      - db_root_password
+      - mysql_root_password
 
   wordpress:
     image: kylefs/dev-wp:latest
