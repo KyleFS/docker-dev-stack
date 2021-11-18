@@ -13,6 +13,8 @@ services:
       MYSQL_PASSWORD: ${DEV_STACK_PASS}
     networks:
       - backend
+    secrets:
+      - db_root_password
 
   wordpress:
     image: kylefs/dev-wp:latest
