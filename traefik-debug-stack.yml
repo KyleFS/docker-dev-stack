@@ -6,7 +6,6 @@ services:
     image: traefik:v2.3
     command:
       - "--providers.docker"
-      - "--providers.docker.swarmmode"
       - "--providers.docker.exposedByDefault=false"
       - "--providers.docker.network=proxy"
       - "--accesslog=true"
