@@ -9,19 +9,21 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
       MYSQL_DATABASE: wordpress
-      MYSQL_USER: ${DEV_STACK_USER}
-      MYSQL_PASSWORD: ${DEV_STACK_PASS}
+      MYSQL_USER_FILE: /run/secrets/wordpress_user
+      MYSQL_PASSWORD_FILE: /run/secrets/wordpress_password
     networks:
       - backend
     secrets:
       - mysql_root_password
+      - wordpress_user
+      - wordpress_password
 
   wordpress:
     image: kylefs/dev-wp:latest
     environment:
       WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_USER: ${DEV_STACK_USER}
-      WORDPRESS_DB_PASSWORD: ${DEV_STACK_PASS}
+      WORDPRESS_DB_USER_FILE: /run/secrets/wordpress_user
+      WORDPRESS_DB_PASSWORD_FILE: /run/secrets/wordpress_password
       WORDPRESS_TABLE_PREFIX: "wp_"
       WORDPRESS_DEBUG: 1
       WORDPRESS_CONFIG_EXTRA: |
@@ -42,6 +44,9 @@ services:
       - frontend
     command:
       ["${DEV_XDEBUG_MODE:-none}", "${DEV_XDEBUG_IP:-127.0.0.1}"]
+    secrets:
+      - wordpress_user
+      - wordpress_password
 
   apache:
     image: kylefs/dev-apache:latest
@@ -82,13 +87,13 @@ services:
     image: atmoz/sftp
     restart: "no"
     volumes:
-      - "wp_data:/home/${DEV_STACK_USER}/html"
-      - "xdebug_data:/home/${DEV_STACK_USER}/xdebug"
-      - "log_data:/home/${DEV_STACK_USER}/log"
-      - "shared_data:/home/${DEV_STACK_USER}/shared"
+      - "sftp_user_data:/etc/sftp"
+      - "wp_data:/home/wordpress/html"
+      - "xdebug_data:/home/wordpress/xdebug"
+      - "log_data:/home/wordpress/log"
+      - "shared_data:/home/wordpress/shared"
     ports:
       - "22"
-    command: ${DEV_STACK_USER}:${DEV_STACK_PASS}:33:33
 
   pma:
     image: phpmyadmin/phpmyadmin:fpm
@@ -124,6 +129,12 @@ volumes:
       type: 'none'
       o: 'bind'
       device: '/opt/docker-dev/shared'
+  sftp_user_data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/opt/docker-dev/conf/sftp'
 
 networks:
   backend:
@@ -134,3 +145,7 @@ networks:
 secrets:
   mysql_root_password:
     file: /opt/docker-dev/secrets/mysql_root_password.txt
+  wordpress_user:
+    file: /opt/docker-dev/secrets/wordpress_user.txt
+  wordpress_password:
+    file: /opt/docker-dev/secrets/wordpress_password.txt
