@@ -5,6 +5,7 @@ services:
     image: traefik:v2.5
     command:
       - "--providers.docker"
+      - "--providers.docker.swarmmode"
       - "--providers.docker.exposedByDefault=false"
       - "--providers.docker.network=proxy"
       - "--api.insecure"
