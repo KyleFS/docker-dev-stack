@@ -41,7 +41,7 @@ services:
       - backend
       - frontend
     command:
-      ["${DEV_XDEBUG_MODE:-none}", "${DEV_XDEBUG_IP:-192.168.1.111}"]
+      ["${DEV_XDEBUG_MODE:-none}", "${DEV_XDEBUG_IP:-127.0.0.1}"]
 
   apache:
     image: kylefs/dev-apache:latest
