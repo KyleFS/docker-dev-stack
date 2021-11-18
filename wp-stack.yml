@@ -7,7 +7,7 @@ services:
       - "db_data:/var/lib/mysql"
     restart: "no"
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
       MYSQL_DATABASE: wordpress
       MYSQL_USER: ${DEV_STACK_USER}
       MYSQL_PASSWORD: ${DEV_STACK_PASS}
@@ -121,10 +121,14 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/opt/docker-dev'
+      device: '/opt/docker-dev/shared'
 
 networks:
   backend:
   frontend:
   proxy:
     external: true
+
+secrets:
+  mysql_root_password:
+    file: /opt/docker-dev/secrets/mysql_root_password.txt
