@@ -58,18 +58,18 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.services.${DEV_UID:?no_uid}.loadbalancer.server.port=80"
+        - "traefik.http.services.${DEV_UID}.loadbalancer.server.port=80"
         # HTTP
-        - "traefik.http.routers.${DEV_UID:?no_uid}-http.entrypoints=web"
-        - "traefik.http.routers.${DEV_UID:?no_uid}-http.rule=Host(`${DEV_WAN_HOSTNAME:?no_wan}`)"
-        - "traefik.http.routers.${DEV_UID:?no_uid}-http.service=${DEV_UID:?no_uid}"
-        - "traefik.http.routers.${DEV_UID:?no_uid}-http.middlewares=auto-https@docker"
+        - "traefik.http.routers.${DEV_UID}-http.entrypoints=web"
+        - "traefik.http.routers.${DEV_UID}-http.rule=Host(`${DEV_WAN_HOSTNAME}`)"
+        - "traefik.http.routers.${DEV_UID}-http.service=${DEV_UID}"
+        - "traefik.http.routers.${DEV_UID}-http.middlewares=auto-https@docker"
         # HTTPS
-        - "traefik.http.routers.${DEV_UID:?no_uid}-https.entrypoints=websecure"
-        - "traefik.http.routers.${DEV_UID:?no_uid}-https.rule=Host(`${DEV_WAN_HOSTNAME:?no_wan}`)"
-        - "traefik.http.routers.${DEV_UID:?no_uid}-https.service=${DEV_UID:?no_uid}"
-        - "traefik.http.routers.${DEV_UID:?no_uid}-https.tls=true"
-        - "traefik.http.routers.${DEV_UID:?no_uid}-https.tls.certresolver=lehttpresolver"
+        - "traefik.http.routers.${DEV_UID}-https.entrypoints=websecure"
+        - "traefik.http.routers.${DEV_UID}-https.rule=Host(`${DEV_WAN_HOSTNAME}`)"
+        - "traefik.http.routers.${DEV_UID}-https.service=${DEV_UID}"
+        - "traefik.http.routers.${DEV_UID}-https.tls=true"
+        - "traefik.http.routers.${DEV_UID}-https.tls.certresolver=lehttpresolver"
         - "traefik.http.middlewares.auto-https.redirectscheme.scheme=https"
         - "traefik.http.middlewares.auto-https.redirectscheme.permanent=true"
     networks:
