@@ -144,8 +144,8 @@ networks:
 
 secrets:
   mysql_root_password:
-    file: /opt/docker-dev/secrets/mysql_root_password.txt
+    external: true
   wordpress_user:
-    file: /opt/docker-dev/secrets/wordpress_user.txt
+    external: true
   wordpress_password:
-    file: /opt/docker-dev/secrets/wordpress_password.txt
+    external: true
