@@ -104,19 +104,11 @@ services:
     depends_on:
       - db
     environment:
-      PMA_HOST: db
-      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
       UPLOAD_LIMIT: 300M
-      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
-      MYSQL_USER_FILE: /run/secrets/wordpress_user
-      MYSQL_PASSWORD_FILE: /run/secrets/wordpress_password
     networks:
       - backend
       - frontend
-    secrets:
-      - mysql_root_password
-      - wordpress_user
-      - wordpress_password
 
 volumes:
   db_data:
