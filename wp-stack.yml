@@ -102,8 +102,8 @@ services:
       - "pma_data:/var/www/html"
     depends_on:
       - db
-    links:
-      - "mysql_db_server:db"
+    environment:
+      - PMA_ARBITRARY=1
     networks:
       - backend
       - frontend
