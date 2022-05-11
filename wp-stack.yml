@@ -103,10 +103,8 @@ services:
       - "pma_data:/var/www/html"
     depends_on:
       - db
-    environment:
-      - PMA_HOST=db
-      - PMA_PORT=3306
-      - UPLOAD_LIMIT=300M
+    links:
+      - "mysql_db_server:db"
     networks:
       - backend
       - frontend
