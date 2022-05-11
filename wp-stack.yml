@@ -98,10 +98,12 @@ services:
   pma:
     image: phpmyadmin/phpmyadmin:fpm
     restart: "no"
+    volumes:
+      - "pma_data:/var/www/html"
     depends_on:
       - db
-    environment:
-      - PMA_ARBITRARY=1
+    links:
+      - "mysql_db_server:db"
     networks:
       - backend
       - frontend
@@ -110,6 +112,7 @@ volumes:
   db_data:
   wp_data:
   xdebug_data:
+  pma_data:
   log_data:
     driver: local
     driver_opts:
