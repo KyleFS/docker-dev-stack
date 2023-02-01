@@ -79,7 +79,6 @@ services:
         - "traefik.http.routers.${DEV_UID}-https.tls.certresolver=lehttpresolver"
         - "traefik.http.middlewares.auto-https.redirectscheme.scheme=https"
         - "traefik.http.middlewares.auto-https.redirectscheme.permanent=true"
-        - "traefik.http.routers.${DEV_UID}-https.middlewares=authelia@docker"
     networks:
       - proxy
       - frontend
