@@ -27,7 +27,6 @@ services:
       WORDPRESS_TABLE_PREFIX: "wp_"
       WORDPRESS_DEBUG: 1
       WORDPRESS_CONFIG_EXTRA: |
-        define( 'BACKUPBUDDY_API_ENABLE', true );
         define( 'FORCE_SSL_ADMIN', true );
     ports:
       - "9003"
@@ -106,7 +105,7 @@ services:
       PMA_HOST: db
       PMA_PORT: 3306
       PMA_ARBITRARY: 1
-      UPLOAD_LIMIT: 300M
+      UPLOAD_LIMIT: 1024M
     networks:
       - backend
       - frontend
