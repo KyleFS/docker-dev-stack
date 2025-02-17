@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3.8'
 
 services:
   db:
@@ -17,6 +17,12 @@ services:
       - mysql_root_password
       - wordpress_user
       - wordpress_password
+    healthcheck:
+      test: [ "CMD", 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-p$$MYSQL_ROOT_PASSWORD' ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
 
   wordpress:
     image: kylefs/dev-wp:latest
@@ -25,9 +31,6 @@ services:
       WORDPRESS_DB_USER_FILE: /run/secrets/wordpress_user
       WORDPRESS_DB_PASSWORD_FILE: /run/secrets/wordpress_password
       WORDPRESS_TABLE_PREFIX: "wp_"
-      WORDPRESS_DEBUG: 1
-      WORDPRESS_CONFIG_EXTRA: |
-        define( 'FORCE_SSL_ADMIN', true );
     ports:
       - "9003"
     volumes:
@@ -46,6 +49,12 @@ services:
     secrets:
       - wordpress_user
       - wordpress_password
+    healthcheck:
+      test: [ "CMD", 'php', '-v' ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
 
   apache:
     image: kylefs/dev-apache:latest
