@@ -23,7 +23,6 @@ services:
       timeout: 5s
       retries: 3
       start_period: 30s
-    command: /bin/sh
 
   wordpress:
     image: kylefs/dev-wp:latest
@@ -55,7 +54,6 @@ services:
       timeout: 5s
       retries: 3
       start_period: 5s
-    command: /bin/sh
 
   apache:
     image: kylefs/dev-apache:latest
@@ -83,10 +81,10 @@ services:
         - "traefik.http.routers.${DEV_UID}.tls.certresolver=lehttpresolver"
         - "traefik.http.middlewares.auto-https.redirectscheme.scheme=https"
         - "traefik.http.middlewares.auto-https.redirectscheme.permanent=true"
+
     networks:
       - proxy
       - frontend
-    command: /bin/sh
 
   sftp:
     image: atmoz/sftp
@@ -99,7 +97,6 @@ services:
       - "shared_data:/home/wordpress/shared"
     ports:
       - "22"
-    command: /bin/sh
 
   pma:
     image: phpmyadmin/phpmyadmin:5.1.3-fpm
@@ -116,7 +113,6 @@ services:
     networks:
       - backend
       - frontend
-    command: /bin/sh
 
 volumes:
   db_data:
