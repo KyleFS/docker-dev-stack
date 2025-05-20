@@ -55,6 +55,7 @@ services:
       timeout: 5s
       retries: 3
       start_period: 5s
+    command: /bin/sh
 
   apache:
     image: kylefs/dev-apache:latest
@@ -98,6 +99,7 @@ services:
       - "shared_data:/home/wordpress/shared"
     ports:
       - "22"
+    command: /bin/sh
 
   pma:
     image: phpmyadmin/phpmyadmin:5.1.3-fpm
@@ -114,6 +116,7 @@ services:
     networks:
       - backend
       - frontend
+    command: /bin/sh
 
 volumes:
   db_data:
