@@ -28,7 +28,7 @@ services:
       - mysql_root_password
     environment:
       - BASE_URL=https://${PLANKA_HOSTNAME}
-      - DATABASE_URL=postgresql://postgres:${DATABASE_PASSWORD}@postgres/planka
+      - DATABASE_URL=postgresql://postgres:$${DATABASE_PASSWORD}@postgres/planka
       - DATABASE_PASSWORD__FILE=/run/secrets/mysql_root_password
 
       # Optionally store the database password in secrets:
@@ -131,6 +131,8 @@ services:
       - db-data:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=planka
+      - POSTGRES_USER=postgres
+      - POSTGRES_HOST_AUTH_METHOD=trust
       - POSTGRES_PASSWORD_FILE=/run/secrets/mysql_root_password
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres -d planka"]
