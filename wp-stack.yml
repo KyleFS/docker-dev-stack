@@ -72,13 +72,13 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.services.${DEV_WAN_HOSTNAME}.loadbalancer.server.port=80"
-        - "traefik.http.routers.${DEV_WAN_HOSTNAME}.entrypoints=web,websecure"
-        - "traefik.http.routers.${DEV_WAN_HOSTNAME}.rule=Host(`${DEV_WAN_HOSTNAME}`)"
-        - "traefik.http.routers.${DEV_WAN_HOSTNAME}.service=${DEV_WAN_HOSTNAME}"
-        - "traefik.http.routers.${DEV_WAN_HOSTNAME}.middlewares=auto-https@docker"
-        - "traefik.http.routers.${DEV_WAN_HOSTNAME}.tls=true"
-        - "traefik.http.routers.${DEV_WAN_HOSTNAME}.tls.certresolver=lehttpresolver"
+        - "traefik.http.services.${DEV_UID}.loadbalancer.server.port=80"
+        - "traefik.http.routers.${DEV_UID}.entrypoints=web,websecure"
+        - "traefik.http.routers.${DEV_UID}.rule=Host(`${DEV_UID}.${DEV_DOMAIN}`)"
+        - "traefik.http.routers.${DEV_UID}.service=${DEV_UID}"
+        - "traefik.http.routers.${DEV_UID}.middlewares=auto-https@docker"
+        - "traefik.http.routers.${DEV_UID}.tls=true"
+        - "traefik.http.routers.${DEV_UID}.tls.certresolver=lehttpresolver"
         - "traefik.http.middlewares.auto-https.redirectscheme.scheme=https"
         - "traefik.http.middlewares.auto-https.redirectscheme.permanent=true"
     networks:

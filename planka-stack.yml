@@ -8,7 +8,7 @@ services:
       - background-images:/app/public/background-images
       - attachments:/app/private/attachments
     ports:
-      - "3000"
+      - "1337"
     networks:
       - proxy
       - backend
