@@ -120,8 +120,7 @@ services:
       #     "excludedEvents": ["notificationCreate", "notificationUpdate"]
       #   }]
     depends_on:
-      postgres:
-        condition: service_healthy
+      - postgres
 
   postgres:
     image: postgres:16-alpine
