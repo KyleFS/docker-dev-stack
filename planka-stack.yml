@@ -28,7 +28,7 @@ services:
       - mysql_root_password
     environment:
       - BASE_URL=http://localhost:3000
-      - DATABASE_URL=postgresql://postgres:$${mysql_root_password}@postgres/planka
+      - DATABASE_URL=postgresql://postgres@postgres/planka
       - DATABASE_PASSWORD__FILE=/run/secrets/mysql_root_password
       # Optionally store the database password in secrets:
       # - DATABASE_URL=postgresql://postgres:$${DATABASE_PASSWORD}@postgres/planka
