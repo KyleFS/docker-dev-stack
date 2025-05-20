@@ -8,9 +8,10 @@ services:
       - background-images:/app/public/background-images
       - attachments:/app/private/attachments
     ports:
-      - 3000
+      - "3000"
     networks:
       - proxy
+      - backend
     deploy:
       labels:
         - "traefik.enable=true"
@@ -135,6 +136,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - backend
     secrets:
       - mysql_root_password
 
@@ -146,6 +149,7 @@ volumes:
   db-data:
 
 networks:
+  backend:
   proxy:
     external: true
 
