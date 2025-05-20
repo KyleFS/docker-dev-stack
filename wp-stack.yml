@@ -81,7 +81,6 @@ services:
         - "traefik.http.routers.${DEV_WAN_HOSTNAME}.tls.certresolver=lehttpresolver"
         - "traefik.http.middlewares.auto-https.redirectscheme.scheme=https"
         - "traefik.http.middlewares.auto-https.redirectscheme.permanent=true"
-
     networks:
       - proxy
       - frontend
