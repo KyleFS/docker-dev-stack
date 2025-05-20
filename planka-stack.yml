@@ -15,13 +15,18 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.services.${PLANKA_UID}.loadbalancer.server.port=3000"
-        - "traefik.http.routers.${PLANKA_UID}.entrypoints=web,websecure"
-        - "traefik.http.routers.${PLANKA_UID}.rule=Host(`${PLANKA_HOSTNAME}`)"
-        - "traefik.http.routers.${PLANKA_UID}.service=${PLANKA_UID}"
-        - "traefik.http.routers.${PLANKA_UID}.middlewares=auto-https@docker"
-        - "traefik.http.routers.${PLANKA_UID}.tls=true"
-        - "traefik.http.routers.${PLANKA_UID}.tls.certresolver=lehttpresolver"
+        - "traefik.http.services.${PLANKA_UID}.loadbalancer.server.port=80"
+        # HTTP
+        - "traefik.http.routers.${PLANKA_UID}-http.entrypoints=web"
+        - "traefik.http.routers.${PLANKA_UID}-http.rule=Host(`${PLANKA_HOSTNAME}`)"
+        - "traefik.http.routers.${PLANKA_UID}-http.service=${PLANKA_UID}"
+        - "traefik.http.routers.${PLANKA_UID}-http.middlewares=auto-https@docker"
+        # HTTPS
+        - "traefik.http.routers.${PLANKA_UID}-https.entrypoints=websecure"
+        - "traefik.http.routers.${PLANKA_UID}-https.rule=Host(`${PLANKA_HOSTNAME}`)"
+        - "traefik.http.routers.${PLANKA_UID}-https.service=${PLANKA_UID}"
+        - "traefik.http.routers.${PLANKA_UID}-https.tls=true"
+        - "traefik.http.routers.${PLANKA_UID}-https.tls.certresolver=lehttpresolver"
         - "traefik.http.middlewares.auto-https.redirectscheme.scheme=https"
         - "traefik.http.middlewares.auto-https.redirectscheme.permanent=true"
     secrets:
