@@ -168,3 +168,5 @@ secrets:
     external: true
   wordpress_password:
     external: true
+  planka_secret:
+    external: true
