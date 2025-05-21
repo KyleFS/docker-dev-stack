@@ -40,6 +40,7 @@ services:
       - DEFAULT_ADMIN_USERNAME=admin
       - DEFAULT_ADMIN_NAME=admin
       - TRUST_PROXY=true
+      - SHOW_DETAILED_AUTH_ERRORS=true
     depends_on:
       - postgres
 
