@@ -30,13 +30,13 @@ services:
     secrets:
       - mysql_root_password
       - planka_secret
-      - wordpress_password
+      - planka_password
     environment:
       - BASE_URL=https://${PLANKA_HOSTNAME}
       - DATABASE_URL=postgresql://postgres@postgres/planka
       - DATABASE_PASSWORD__FILE=/run/secrets/mysql_root_password
       - SECRET_KEY__FILE=/run/secrets/planka_secret
-      - DEFAULT_ADMIN_PASSWORD__FILE=/run/secrets/wordpress_password
+      - DEFAULT_ADMIN_PASSWORD__FILE=/run/secrets/planka_password
       - DEFAULT_ADMIN_USERNAME=admin
       - DEFAULT_ADMIN_EMAIL=admin
     depends_on:
@@ -77,7 +77,7 @@ networks:
 secrets:
   mysql_root_password:
     external: true
-  wordpress_password:
+  planka_password:
     external: true
   planka_secret:
     external: true
