@@ -36,9 +36,9 @@ services:
       DATABASE_URL: postgresql://postgres@postgres/planka
       DATABASE_PASSWORD__FILE: /run/secrets/mysql_root_password
       SECRET_KEY__FILE: /run/secrets/planka_secret
-      DEFAULT_ADMIN_EMAIL: "${DEFAULT_ADMIN_EMAIL:-demo@demo.demo}"
+      DEFAULT_ADMIN_EMAIL: "${DEFAULT_ADMIN_EMAIL}"
       DEFAULT_ADMIN_USERNAME: "${DEFAULT_ADMIN_USERNAME:-admin}"
-      DEFAULT_ADMIN_PASSWORD: "${DEFAULT_ADMIN_PASSWORD:-demo}"
+      DEFAULT_ADMIN_PASSWORD__FILE: /run/secrets/planka_password
       DEFAULT_ADMIN_NAME: "${DEFAULT_ADMIN_NAME:-admin}"
       TRUST_PROXY: "true"
     depends_on:
