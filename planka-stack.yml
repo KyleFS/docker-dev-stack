@@ -7,8 +7,6 @@ services:
       - user-avatars:/app/public/user-avatars
       - background-images:/app/public/background-images
       - attachments:/app/private/attachments
-    ports:
-      - "1337"
     networks:
       - proxy
       - backend
@@ -32,6 +30,7 @@ services:
     secrets:
       - mysql_root_password
       - planka_secret
+      - wordpress_password
     environment:
       - BASE_URL=https://${PLANKA_HOSTNAME}
       - DATABASE_URL=postgresql://postgres@postgres/planka
@@ -67,9 +66,9 @@ services:
       # - DEFAULT_ADMIN_EMAIL=demo@demo.demo
       # - DEFAULT_ADMIN_PASSWORD=demo
       # Optionally store in secrets - then DEFAULT_ADMIN_PASSWORD should not be set
-      # - DEFAULT_ADMIN_PASSWORD__FILE=/run/secrets/default_admin_password
+      - DEFAULT_ADMIN_PASSWORD__FILE=/run/secrets/wordpress_password
       # - DEFAULT_ADMIN_NAME=Demo Demo
-      # - DEFAULT_ADMIN_USERNAME=demo
+      - DEFAULT_ADMIN_USERNAME=admin
 
       # - ACTIVE_USERS_LIMIT=
 
@@ -162,8 +161,6 @@ networks:
 
 secrets:
   mysql_root_password:
-    external: true
-  wordpress_user:
     external: true
   wordpress_password:
     external: true
