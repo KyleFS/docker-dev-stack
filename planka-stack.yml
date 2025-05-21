@@ -53,6 +53,7 @@ services:
       - POSTGRES_DB=planka
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD_FILE=/run/secrets/mysql_root_password
+      - POSTGRES_HOST_AUTH_METHOD=trust
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres -d planka"]
       interval: 10s
