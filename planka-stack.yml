@@ -41,8 +41,7 @@ services:
       - DEFAULT_ADMIN_PASSWORD="${DEFAULT_ADMIN_PASSWORD:-demo}"
       - DEFAULT_ADMIN_NAME="${DEFAULT_ADMIN_NAME:-admin}"
     depends_on:
-      postgres:
-        condition: service_healthy
+      - postgres
 
   postgres:
     image: postgres:16-alpine
