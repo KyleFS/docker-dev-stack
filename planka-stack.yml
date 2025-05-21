@@ -37,9 +37,10 @@ services:
       - DATABASE_PASSWORD__FILE=/run/secrets/mysql_root_password
       - SECRET_KEY__FILE=/run/secrets/planka_secret
       # - DEFAULT_ADMIN_PASSWORD__FILE=/run/secrets/wordpress_password
-      - DEFAULT_ADMIN_USERNAME=admin
+      - DEFAULT_ADMIN_EMAIL=demo@demo.demo
       - DEFAULT_ADMIN_PASSWORD=demo
-      - SHOW_DETAILED_AUTH_ERRORS=true
+      - DEFAULT_ADMIN_NAME=Demo Demo
+      - DEFAULT_ADMIN_USERNAME=demo
     depends_on:
       - postgres
 
