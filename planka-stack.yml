@@ -39,7 +39,8 @@ services:
       - DEFAULT_ADMIN_PASSWORD__FILE=/run/secrets/planka_password
       - DEFAULT_ADMIN_USERNAME=admin
       - DEFAULT_ADMIN_NAME=admin
-      - DEFAULT_ADMIN_EMAIL=admin
+      - DEFAULT_ADMIN_EMAIL=admin@admin.com
+      - TRUST_PROXY=true
     depends_on:
       - postgres
 
