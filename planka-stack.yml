@@ -40,7 +40,7 @@ services:
       DEFAULT_ADMIN_USERNAME: "${DEFAULT_ADMIN_USERNAME:-admin}"
       DEFAULT_ADMIN_PASSWORD: "${DEFAULT_ADMIN_PASSWORD:-demo}"
       DEFAULT_ADMIN_NAME: "${DEFAULT_ADMIN_NAME:-admin}"
-      TRUST_PROXY: true
+      TRUST_PROXY: "true"
     depends_on:
       - postgres
 
