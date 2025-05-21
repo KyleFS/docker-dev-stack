@@ -31,6 +31,7 @@ services:
         - "traefik.http.middlewares.auto-https.redirectscheme.permanent=true"
     secrets:
       - mysql_root_password
+      - planka_secret
     environment:
       - BASE_URL=https://${PLANKA_HOSTNAME}
       - DATABASE_URL=postgresql://postgres@postgres/planka
@@ -43,9 +44,8 @@ services:
       # secrets:
       #   - database_password
 
-      - SECRET_KEY=notsecretkey
       # Optionally store in secrets - then SECRET_KEY should not be set
-      # - SECRET_KEY__FILE=/run/secrets/secret_key
+      - SECRET_KEY__FILE=/run/secrets/planka_secret
 
       # - LOG_LEVEL=warn
 
